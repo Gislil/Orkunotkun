@@ -1,7 +1,11 @@
 <?php
     if (isset($registerObject)) {
-        foreach ($registerObject->errorMessages as $error) {
-            echo $error;
+        if (empty($registerObject->errorMessages)) {
+            echo $registerObject->successMessage;
+        } else {
+            foreach ($registerObject->errorMessages as $error) {
+                echo $error;
+            }
         }
     }
 ?>
