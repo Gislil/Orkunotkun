@@ -1,3 +1,11 @@
+<?php
+    if (isset($registerObject)) {
+        foreach ($registerObject->errorMessages as $error) {
+            echo $error;
+        }
+    }
+?>
+
 <form action="register.php" method="post" name="registerform">
 
     <label for="email">Tölvupóstfang</label>
