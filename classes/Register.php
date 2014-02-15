@@ -3,7 +3,7 @@ class Register
 {
     public $errorMessages = array();
 
-    public $successMessage;
+    public $message;
 
     public function __construct()
     {
@@ -40,10 +40,12 @@ class Register
 
             // Check if email is already registered
             $stm = $db->prepare("SELECT * FROM login.orku_users
-                                 WHERE user_email = ':email'");
+                                 WHERE user_email = :email");
             $stm->bindParam(':email', $email, PDO::PARAM_STR);
             $stm->execute();
-            if ($stm->rowCount() > 0) {
+
+            echo $stm->rowCount() . "radir\n";
+            if ($stm->rowCount() == 1) {
                 $this->errorMessages[] = 'Tölvupóstfang er þegar skráð';
                 // TODO: make way to reset password
             } else {
@@ -56,7 +58,7 @@ class Register
                     $stm->bindParam(':email', $email, PDO::PARAM_STR);
                     $stm->bindParam(':password', $passw, PDO::PARAM_STR);
                     $stm->execute();
-                    $this->successMessage = 'Skráning tókst.';
+                    $this->message = 'Skráning tókst.';
                 } catch (PDOException $e) {
                     $this->errorMessages[] = 'Registering user failed: ' . $e->getMessage();
                 }

@@ -1,9 +1,9 @@
 <?php
-    if (isset($registerObject)) {
-        if (empty($registerObject->errorMessages)) {
-            echo $registerObject->successMessage;
+    if (isset($register)) {
+        if (empty($register->errorMessages)) {
+            echo $register->message;
         } else {
-            foreach ($registerObject->errorMessages as $error) {
+            foreach ($register->errorMessages as $error) {
                 echo $error;
             }
         }
