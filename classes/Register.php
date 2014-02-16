@@ -32,7 +32,7 @@ class Register
             // create the database connection
             $db;
             try {
-                $db = new PDO('mysql:host=localhost;dbname=login;charset=utf8', 'orkuadmin', 'orkupass');
+                $db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 $this->errorMessages[] = 'Connection failed: ' . $e->getMessage();

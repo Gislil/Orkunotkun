@@ -29,7 +29,7 @@ class Login
             // create the database connection
             $db;
             try {
-                $db = new PDO('mysql:host=localhost;dbname=login;charset=utf8', 'orkuadmin', 'orkupass');
+                $db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 $this->errorMessages[] = 'Connection failed: ' . $e->getMessage();
@@ -53,7 +53,7 @@ class Login
                     $this->errorMessages[] = 'Lykilorð ekki rétt, reyndu aftur.';
                 }
             } else {
-                $this->errorMessages[] = 'Póstfangið ' . $email . 'fannst ekki á skrá';   
+                $this->errorMessages[] = 'Póstfangið ' . $email . ' fannst ekki á skrá';   
             }
         }
     }
@@ -62,7 +62,6 @@ class Login
     {
         session_unset();
         session_destroy();
-        echo "user logged out\n";
     }
 
     public function isLoggedIn()
