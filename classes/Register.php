@@ -44,7 +44,6 @@ class Register
             $stm->bindParam(':email', $email, PDO::PARAM_STR);
             $stm->execute();
 
-            echo $stm->rowCount() . "radir\n";
             if ($stm->rowCount() == 1) {
                 $this->errorMessages[] = 'Tölvupóstfang er þegar skráð';
                 // TODO: make way to reset password
